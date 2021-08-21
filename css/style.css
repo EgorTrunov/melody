@@ -23,6 +23,12 @@ a {
     cursor: pointer;
 }
 
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
 .container {
     max-width: 1280px;
     margin: 0 auto;
@@ -117,7 +123,7 @@ path.current__floor {
     color: #635854;
 }
 
-.counter {
+.floor__counter {
     margin: 50px 0px;
     color: #635854;
     font-family: 'Bebas Neue', sans-serif;
@@ -141,9 +147,121 @@ path.current__floor {
     background: #3596f5;
     border-radius: 6px;
     color: #ffffff;
-    border: none;
     padding: 16px 36px;
     font-size: 16px;
     line-height: 18px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.2s;
+}
+
+.is__open {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.modal__dialog {
+    position: relative;
+    max-width: 1000px;
+    min-height: 565px;
+    background-color: #ffffff;
+    flex-grow: 1;
+    display: flex;
+    opacity: 0;
+    transform: translateY(-10%);
+    transition: transform 0.2s, opacity 0.2s;
+    transition-delay: 0.2s;
+}
+
+.is__open>.modal__dialog {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.modal__img {
+    background-color: #EBEBEB;
+    width: 60%;
+    text-align: center;
+    padding: 50px;
+}
+
+.modal__title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 29px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.flats path {
+    opacity: 0;
     cursor: pointer;
+}
+
+.flats path:hover {
+    opacity: 1;
+}
+
+.modal__info {
+    width: 40%;
+    padding: 50px 46px;
+}
+
+.flat__list {
+    padding: 0;
+    list-style: none;
+    margin-top: 55px;
+}
+
+.flat__item {
+    margin-bottom: 10px;
+}
+
+.flat__link {
+    font-size: 16px;
+    line-height: 19px;
+    color: #635854;
+    text-decoration: none;
+}
+
+.flat__link:hover {
+    color: #3596f5;
+    text-decoration: underline;
+}
+
+.modal__alert {
+    margin-top: 56px;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 19px;
+    color: #635854;
+}
+
+.button__close {
+    position: absolute;
+    right: 27px;
+    top: 38px;
+}
+
+.sold {
+    opacity: 0.3;
+    color: #000000;
+}
+
+.sold:hover {
+    opacity: 0.3;
+    color: #000000;
 }
