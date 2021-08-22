@@ -1,11 +1,14 @@
 $(document).ready(function() {
     let currentFloor = 2;
+    let currentFlats = 1;
     const counterUp = $(".counter__up");
     const counterDown = $(".counter__down");
     const floorPath = $(".home__img path");
     const modal = $(".modal");
     const closeButton = $(".button__close");
     const viewFlats = $(".view__flats");
+    const flatsPath = $(".flats path");
+    const flatsInfo = $(".flat__link");
 
 
     floorPath.on("mouseover", function() {
@@ -14,9 +17,17 @@ $(document).ready(function() {
         $(".counter").text(currentFloor);
     });
 
+    flatsPath.on("mouseover", function() {
+        flatsPath.removeClass("current__flats");
+        currentFlats = $(this).attr('data-flats');
+    });
+
     floorPath.on("click", toggleModal);
 
-    closeButton.on("click", toggleModal);
+    closeButton.on("click", function() {
+        toggleModal();
+        enableScroll();
+    });
 
     viewFlats.on("click", toggleModal);
 
@@ -42,5 +53,31 @@ $(document).ready(function() {
 
     function toggleModal() {
         modal.toggleClass("is__open");
+        disableScroll();
     }
+
+    //Блокировка скролла
+
+    const disableScroll = () => {
+        const widthScroll = window.innerWidth - document.body.offsetWidth;
+
+        document.body.dbScrollY = window.scrollY;
+
+        document.body.style.cssText = `
+        position: fixed;
+        top: ${-window.scrollY}px;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        padding-right: ${widthScroll}px;
+        `
+    };
+
+    const enableScroll = () => {
+        document.body.style.cssText = '';
+        window.scroll({
+            top: document.body.dbScrollY,
+        })
+    };
 });
