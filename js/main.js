@@ -1,6 +1,5 @@
 $(document).ready(function() {
     let currentFloor = 2;
-    let currentFlats = 1;
     const counterUp = $(".counter__up");
     const counterDown = $(".counter__down");
     const floorPath = $(".home__img path");
@@ -8,7 +7,7 @@ $(document).ready(function() {
     const closeButton = $(".button__close");
     const viewFlats = $(".view__flats");
     const flatsPath = $(".flats path");
-    const flatsInfo = $(".flat__link");
+    const flatsLink = $(".flat__link");
 
 
     floorPath.on("mouseover", function() {
@@ -17,9 +16,15 @@ $(document).ready(function() {
         $(".counter").text(currentFloor);
     });
 
+
     flatsPath.on("mouseover", function() {
-        flatsPath.removeClass("current__flats");
-        currentFlats = $(this).attr('data-flats');
+        removeClass();
+        $(`[data-flats-link="${$(this).attr('data-flats')}"]`).toggleClass('current__flat');
+    });
+
+    flatsLink.on("mouseover", function() {
+        removeClass();
+        $(`[data-flats="${$(this).attr('data-flats-link')}"]`).toggleClass('current__flat');
     });
 
     floorPath.on("click", toggleModal);
@@ -54,6 +59,11 @@ $(document).ready(function() {
     function toggleModal() {
         modal.toggleClass("is__open");
         disableScroll();
+    }
+
+    function removeClass() {
+        flatsPath.removeClass("current__flat");
+        flatsLink.removeClass("current__flat");
     }
 
     //Блокировка скролла
